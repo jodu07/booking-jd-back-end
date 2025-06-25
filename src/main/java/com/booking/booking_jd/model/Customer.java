@@ -1,4 +1,4 @@
-package com.booking.booking_jd;
+package com.booking.booking_jd.model;
 
 import jakarta.persistence.*;
 import java.util.List;

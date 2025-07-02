@@ -3,10 +3,12 @@ package com.booking.booking_jd.controller;
 import com.booking.booking_jd.model.Customer;
 import com.booking.booking_jd.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -47,5 +49,16 @@ public class CustomerController {
                 return ResponseEntity.noContent().build();
             })
             .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @PostMapping("/login")
+    public ResponseEntity<Customer> login(@RequestBody Customer loginData) {
+        Optional<Customer> customerOpt = customerRepository.findByUsernameAndPassword(
+            loginData.getUsername(), loginData.getPassword()
+        );
+
+        return customerOpt
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 }

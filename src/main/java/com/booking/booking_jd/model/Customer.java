@@ -13,6 +13,9 @@ public class Customer {
     private String email;
     private String username;
     private String password;
+    
+    @Column(name = "type_user")
+    private String typeUser = "CLIENT";
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Booking> bookings;
@@ -32,6 +35,9 @@ public class Customer {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    
+    public String getTypeUser() { return typeUser; }
+    public void setTypeUser(String typeUser) { this.typeUser = typeUser; }
 
     public List<Booking> getBookings() { return bookings; }
     public void setBookings(List<Booking> bookings) { this.bookings = bookings; }

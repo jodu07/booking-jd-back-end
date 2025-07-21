@@ -35,6 +35,7 @@ public class CustomerController {
                 customer.setEmail(updatedCustomer.getEmail());
                 customer.setUsername(updatedCustomer.getUsername());
                 customer.setPassword(updatedCustomer.getPassword());
+                customer.setTypeUser(updatedCustomer.getTypeUser());
                 // No sobreescribimos bookings aquí por precaución
                 return ResponseEntity.ok(customerRepository.save(customer));
             })
